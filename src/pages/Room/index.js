@@ -45,9 +45,10 @@ function layout(clientsNumber = 1) {
 export default function Room() {
   const { id: roomID } = useParams();
   //const [ismute, setMute] = useState(false);
-  const { clients, provideMediaRef } = useWebRTC(roomID);
+  const { clients, provideMediaRef,stopWebCam } = useWebRTC(roomID);
   const videoLayout = layout(clients.length);
   const [visibility, v] = useState(false);
+  
 
   const viewChat = (value) => {
     if (visibility == false) {
@@ -83,7 +84,8 @@ export default function Room() {
         </div>
         <div className={classes.containerItem2}>
           <div>
-            <SpecialButton img={videPNG} w="42px" h="42px" type="camera" />
+            {/* <SpecialButton img={videPNG} w="42px" h="42px" type="camera" /> */}
+            <button onClick={() => stopWebCam()}>Camera</button>
           </div>
           <div>
             <SpecialButton img={microphonePNG} w="42px" h="42px" type="mikro" />

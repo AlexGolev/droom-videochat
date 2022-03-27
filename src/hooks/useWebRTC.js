@@ -193,8 +193,15 @@ export default function useWebRTC(roomID) {
   }, []);
 
 
+  const stopWebCam = () => {
+    if (localMediaStream.current){
+        localMediaStream.current.getTracks().forEach(track => track.stop());
+    }
+  };
+
   return {
     clients,
-    provideMediaRef
+    provideMediaRef,
+    stopWebCam,
   };
 }
