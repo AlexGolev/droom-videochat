@@ -5,6 +5,7 @@ import socket from '../../socket/index.js'
 import ACTIONS from '../../socket/actions.js'
 import { useState, useEffect } from 'react'
 import {v4} from 'uuid'
+import BaseButton from '../../button/BaseButton'
 
 export default function Conference() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function Conference() {
                     Создать конференцию
                 </h1>
                 <div className={classes.boxItem}>
-                    <button onClick={() => navigate("/room/" + v4()) } className={classes.myButton} style={{ background: "#06b06d", width: "100%" }}>Создать</button>
+                    <BaseButton goTo={"/room/" + v4()} text="Создать" w="100%" color="#06b06d"/>
                 </div>
             </div>
         </div>

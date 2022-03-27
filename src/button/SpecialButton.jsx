@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classes from './SpecialButton.module.css';
 
 
 
 
-function Click(typ,viewChat,visibility){
-    switch(typ){
+function Click(type,viewChat,visibility){
+    //const navigate = useNavigate();
+    switch(type){
         case 'chat':
             viewChat(visibility);
         break;
-        case 'leav':
-            window.location.assign('http://localhost:3000/conference');
+        case 'leave':
+            //navigate('/conference');
         break;
     }
 }
@@ -22,7 +24,7 @@ class SpecialButton extends Component {
 
     render() {
         return (
-            <button onClick={() => Click(this.props.typ,this.props.viewChat,this.state.visibility)} className={classes.myButton} style={{background: this.props.color, backgroundImage: `url(${this.props.img})`, width: this.props.w, height: this.props.h}}>
+            <button onClick={() => Click(this.props.type,this.props.viewChat,this.state.visibility)} className={classes.myButton} style={{background: this.props.color, backgroundImage: `url(${this.props.img})`, width: this.props.w, height: this.props.h}}>
                 {this.props.text}
             </button>
         );

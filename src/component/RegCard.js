@@ -1,9 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import BaseButton from '../button/BaseButton';
+import BaseInput from '../input/BaseInput';
 import classes from './RegCard.module.css'
 
 export default function RegCard() {
-    const navigate = useNavigate();
     return (
         <div className={classes.form}>
             <h2 className={classes.title}>
@@ -13,9 +13,9 @@ export default function RegCard() {
                 Присоединяйтесь к нам бесплатно! Будьте ближе друг к другу вместе с Droom.
             </p>
             <div className={classes.userdata}>
-                <input className={classes.myInput} placeholder="Username" />
-                <input className={classes.myInput} placeholder="Password" />
-                <button onClick={() => navigate("#")} className={classes.myButton}>LOG IN</button>
+                <BaseInput text="Username"/>
+                <BaseInput text="Password"/>
+                <BaseButton goTo="#" text="LOG IN"/>
             </div>
         </div>
     );

@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import MyButton from '../button/MyButton.jsx'
-import MyInput from '../input/MyInput.jsx'
+import React from 'react';
+import BaseInput from '../../input/BaseInput';
+import BaseButton from '../../button/BaseButton';
 import classes from './System.module.css'
 import { NavLink } from 'react-router-dom';
 
-class System extends Component {
-    render() {
+export default function System () {
         return (
             <div className={classes.container}>
                 <div className={classes.box}>
@@ -31,21 +30,18 @@ class System extends Component {
                                 <p>
                                     Email
                                 </p>
-                                <MyInput text="Email" />
+                                <BaseInput text="Email" />
                             </div>
                             <div className={classes.myBox2}>
                                 <p>
                                     Password
                                 </p>
-                                <MyInput text="Password" />
+                                <BaseInput text="Password" />
                             </div>
-                            <MyButton link="#" text="LOG IN"/>
+                            <BaseButton link="#" text="LOG IN"/>
                         </div>
                     </div>
                 </div>
             </div>
         );
-    }
 }
-
-export default System;

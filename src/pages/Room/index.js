@@ -29,6 +29,7 @@ function layout(clientsNumber = 1) {
 
     if (index === arr.length - 1 && row.length === 1) {
       return [{
+        pointerEvents: 'none',
         width: '100%',
         height,
       }];
@@ -82,16 +83,16 @@ export default function Room() {
         </div>
         <div className={classes.containerItem2}>
           <div>
-            <SpecialButton img={videPNG} w="42px" h="42px" typ="camera" />
+            <SpecialButton img={videPNG} w="42px" h="42px" type="camera" />
           </div>
           <div>
-            <SpecialButton img={microphonePNG} w="42px" h="42px" typ="mikro" />
+            <SpecialButton img={microphonePNG} w="42px" h="42px" type="mikro" />
           </div>
           <div>
-            <SpecialButton img={phonePNG} w="42px" h="42px" typ="leav" />
+            <SpecialButton img={phonePNG} w="42px" h="42px" type="leave" />
           </div>
           <div>
-            <SpecialButton viewChat={viewChat} img={messengerPNG} w="42px" h="42px" typ="chat" />
+            <SpecialButton viewChat={viewChat} img={messengerPNG} w="42px" h="42px" type="chat" />
           </div>
         </div>
       </div>
