@@ -1,0 +1,12 @@
+.comentContainer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    background-color: rgb(181, 181, 181);
+    width: 100%;
+    height: 100%;
+}
+.comentItem1{
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,18 @@
+.video-js{
+    
+    margin-top: 10%;
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    border-style: none;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    
+}
+
+@media  (max-width:1200px){
+    .video-js{
+        width: 352px;
+        height: 288px;
+    }
+}

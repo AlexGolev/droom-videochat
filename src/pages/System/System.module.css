@@ -1,0 +1,97 @@
+.container{
+    background-size: 100%;
+
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    margin-right: 0;
+
+}
+
+.box{
+    background-image: url('../img/bg5.jpg');
+    background-size: 130%;
+    border-radius: 13px;
+    width: 973px;
+    height: 626px;
+    margin: auto;
+    display: flex;
+    box-shadow: 0px 0px 20px 12px rgba(0, 0, 0, 0.25);
+}
+
+.boxItem{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.boxItem h2{
+    padding-bottom: 10%;
+}
+
+.boxItem div{
+    display: flex;
+    flex-direction: column;
+}
+
+.myBox1 p{
+
+    font-style: normal;
+    font-weight: normal;
+    padding:0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+
+}
+
+.boxItem h1{
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 56px;
+    
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #414141;
+}
+
+.boxItem a,p,h2{
+    font-size: 24px;
+    text-align: center;
+    text-decoration-style: none;
+    color: #414141;
+    margin: 0;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.boxItem2{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-around;
+    background-color: rgba(233, 233, 233, 0.85);
+    border-radius: 0 13px 13px 0;
+}
+
+.myBox1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 20%;
+    padding-left: 20%;
+    height:50%;
+}
+
+.myBox2{
+    padding-left: 0px;
+}
+
+.boxItem2 p{
+    text-align: start;
+}
