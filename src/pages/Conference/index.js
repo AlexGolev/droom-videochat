@@ -27,7 +27,7 @@ export default function Conference() {
                     {rooms.map(roomID => (
                         <li key={roomID} style={{ color: "#fff", margin: "5%" }}>
                             {roomID}
-                            <BaseButton goTo={`/room/${roomID}`} marginLeft="5%" color="#06b06d" text="ВОЙТИ" />
+                            <BaseButton goTo={`/room/${roomID}`} marginLeft="5%" color="#06b06d" text="ВОЙТИ" type="conductor"/>
                         </li>
                     ))}
                 </ul>

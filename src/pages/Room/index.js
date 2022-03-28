@@ -31,8 +31,8 @@ function layout(clientsNumber = 1) {
     if (index === arr.length - 1 && row.length === 1) {
       return [{
         pointerEvents: 'none',
-        width: '100%',
-        height,
+        width: '50%',
+        height: '50%',
       }];
     }
 
@@ -92,7 +92,7 @@ export default function Room() {
             </div>
           </div>
         </div>
-        <Chat visibility={visibility} socket={socket} username={localStorage.name} room={roomID}/>
+        <Chat visibility={visibility} socket={socket} username={localStorage.name} room={roomID} />
       </div>
     );
   } else {

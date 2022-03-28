@@ -31,7 +31,7 @@ export default function RegCard() {
     return (
         <div className={classes.form}>
             <h2 className={classes.title}>
-                SIGN IN TO DROOM
+                REGISTRATION
             </h2>
             <p>
                 Присоединяйтесь к нам бесплатно! Будьте ближе друг к другу вместе с Droom.
