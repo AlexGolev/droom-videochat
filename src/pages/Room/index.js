@@ -10,6 +10,7 @@ import videPNG from '../../img/video.png'
 import microphonePNG from '../../img/microphone.png'
 import phonePNG from '../../img/phone.png'
 import messengerPNG from '../../img/messenger.png'
+import socket from '../../socket';
 
 
 function layout(clientsNumber = 1) {
@@ -91,7 +92,7 @@ export default function Room() {
             </div>
           </div>
         </div>
-        <Chat visibility={visibility} />
+        <Chat visibility={visibility} socket={socket} username={localStorage.name} room={roomID}/>
       </div>
     );
   } else {

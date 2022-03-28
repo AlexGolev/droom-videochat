@@ -3,6 +3,7 @@ import BaseButton from '../button/BaseButton';
 import BaseInput from '../input/BaseInput';
 import classes from './RegCard.module.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegCard() {
     const [register, setRegister] = useState(() => {
@@ -11,7 +12,7 @@ export default function RegCard() {
             password: "",
         }
     });
-
+    const navigate = useNavigate();
     const changeInputRegister = event => {
         event.persist()
         setRegister(prev => {
