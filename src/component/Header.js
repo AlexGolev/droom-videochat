@@ -17,7 +17,11 @@ export default function Header() {
                 <NavButton goTo="/conference" text="ВОЙТИ В КОНФЕРЕНЦИЮ" />
             </div>
             <div className={classes.navButton} style={{ marginRight: "1.5%" }}>
-                <NavButton goTo="/register" text="РЕГИСТРАЦИЯ" color="#06b06d"/>
+                {localStorage.token ?
+                    <NavButton goto="#" text={localStorage.name} color="#06b06d" />
+                    :
+                    <NavButton goTo="/register" text="РЕГИСТРАЦИЯ" color="#06b06d" />
+                }
             </div>
         </div>
     );

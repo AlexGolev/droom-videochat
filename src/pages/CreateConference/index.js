@@ -25,7 +25,7 @@ export default function Conference() {
                     Создать конференцию
                 </h1>
                 <div className={classes.boxItem}>
-                    <BaseButton goTo={"/room/" + v4()} text="Создать" w="100%" color="#06b06d"/>
+                    <BaseButton goTo={"/room/" + v4()} text="Создать" w="100%" color="#06b06d" type="conductor"/>
                 </div>
             </div>
         </div>

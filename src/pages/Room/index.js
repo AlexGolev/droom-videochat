@@ -43,62 +43,66 @@ function layout(clientsNumber = 1) {
 }
 
 export default function Room() {
-  const { id: roomID } = useParams();
-  //const [ismute, setMute] = useState(false);
-  const { clients, provideMediaRef,stopWebCam } = useWebRTC(roomID);
-  const videoLayout = layout(clients.length);
-  const [visibility, v] = useState(false);
-  
+  if (localStorage.token) {
+    const { id: roomID } = useParams();
+    //const [ismute, setMute] = useState(false);
+    const { clients, provideMediaRef, stopWebCam } = useWebRTC(roomID);
+    const videoLayout = layout(clients.length);
+    const [visibility, v] = useState(false);
 
-  const viewChat = (value) => {
-    if (visibility == false) {
-      v(value);
+
+    const viewChat = (value) => {
+      if (visibility == false) {
+        v(value);
+      }
+      else {
+        v(!value);
+      }
     }
-    else {
-      v(!value);
-    }
-  }
 
-  console.log(clients);
-
-  return (
-    <div className={classes.containerMain}>
-      <div className={classes.videContainer}>
-        <div className={classes.containerItem1}>
-          {clients.map((clientID, index) => {
-            return (
-              <div key={clientID} style={videoLayout[index]} id={clientID}>
-                <video
-                  width='100%'
-                  height='100%'
-                  ref={instance => {
-                    provideMediaRef(clientID, instance);
-                  }}
-                  autoPlay
-                  playsInline
-                  muted={clientID === LOCAL_VIDEO}
-                />
-              </div>
-            );
-          })}
-        </div>
-        <div className={classes.containerItem2}>
-          <div>
-            {/* <SpecialButton img={videPNG} w="42px" h="42px" type="camera" /> */}
-            <button onClick={() => stopWebCam()}>Camera</button>
+    console.log(clients);
+    return (
+      <div className={classes.containerMain}>
+        <div className={classes.videContainer}>
+          <div className={classes.containerItem1}>
+            {clients.map((clientID, index) => {
+              return (
+                <div key={clientID} style={videoLayout[index]} id={clientID}>
+                  <video
+                    width='100%'
+                    height='100%'
+                    ref={instance => {
+                      provideMediaRef(clientID, instance);
+                    }}
+                    autoPlay
+                    playsInline
+                    muted={clientID === LOCAL_VIDEO}
+                  />
+                </div>
+              );
+            })}
           </div>
-          <div>
-            <SpecialButton img={microphonePNG} w="42px" h="42px" type="mikro" />
-          </div>
-          <div>
-            <SpecialButton img={phonePNG} w="42px" h="42px" type="leave" />
-          </div>
-          <div>
-            <SpecialButton viewChat={viewChat} img={messengerPNG} w="42px" h="42px" type="chat" />
+          <div className={classes.containerItem2}>
+            <div>
+              <SpecialButton img={phonePNG} w="42px" h="42px" type="leave" />
+            </div>
+            <div>
+              <SpecialButton viewChat={viewChat} img={messengerPNG} w="42px" h="42px" type="chat" />
+            </div>
           </div>
         </div>
+        <Chat visibility={visibility} />
       </div>
-      <Chat visibility={visibility} />
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className={classes.containerMain}>
+        <div className={classes.videContainer}>
+          <div className={classes.containerItem1}>
+            <h1 style={{ color: '#fff' }} >Вы не авторизованы!</h1>
+          </div>
+        </div>
+      </div >
+    )
+  }
 }

@@ -2,12 +2,17 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const prisma = require('./prismaClient');
+const cors = require("cors");
 const bcrypt = require('bcryptjs');
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
 const { version, validate } = require('uuid');
 
-var _ = require("lodash");
 var bodyParser = require("body-parser");
 var jwt = require('jsonwebtoken');
 
@@ -27,7 +32,7 @@ var strategy = new JwtStrategy(jwtOptions, async function (jwt_payload, next) {
   var user = await prisma.user.findFirst({
     where: {
       id: {
-        equals:jwt_payload.id
+        equals: jwt_payload.id
       }
     }
   })
@@ -101,7 +106,6 @@ io.on('connection', socket => {
             io.to(clientID).emit(ACTIONS.REMOVE_PEER, {
               peerID: socket.id,
             });
-
             socket.emit(ACTIONS.REMOVE_PEER, {
               peerID: clientID,
             });
@@ -131,11 +135,15 @@ io.on('connection', socket => {
     });
   });
 
+  socket.on(ACTIONS.SEND_MESSAGE, (data) => {
+    socket.to(data.room).emit(ACTIONS.RECEIVE_MESSAGE, data);
+  });
 });
 
 const publicPath = path.join(__dirname, 'build');
 
 app.use(express.static(publicPath));
+app.use(cors());
 
 app.get('*', (req, res) => {
 
@@ -149,8 +157,13 @@ app.post('/registration', async (req, res) => {
     name: req.query['name'],
     password: req.query['password']
   }
-  const user = await prisma.user.create({ data: userdata })
-  res.json(user)
+  try {
+    const user = await prisma.user.create({ data: userdata });
+    return res.json(user)
+  } catch (e) {
+    console.log(e.message)
+    return res.sendStatus(400)
+  }
 })
 
 app.post("/login", async function (req, res) {
@@ -162,7 +175,7 @@ app.post("/login", async function (req, res) {
   const user = await prisma.user.findFirst({
     where: {
       name: {
-        equals:name
+        equals: name
       }
     }
   });
@@ -182,7 +195,7 @@ app.post("/login", async function (req, res) {
   }
 });
 
-app.post('/profile', passport.authenticate('jwt', { session: false }), (req, res) => {res.status(200).send(req.user)});
+app.post('/profile', passport.authenticate('jwt', { session: false }), (req, res) => { res.status(200).send(req.user) });
 
 server.listen(PORT, () => {
   console.log('Server Started!', PORT)
